@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} EditeurText
+{% endblock %}
+{% block stylesheets %}	
+
+  <link type="text/css" href="/texteditor/sample/css/simple.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="/texteditor/sample/css/buttons.css" rel="stylesheet" media="screen" />
+
+{% endblock %}
+{% block body %}	
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+		</div>
+<div class='mt-5'></div>
+<button type="button" class="btn btn-primary my-3 saveButton" data-toggle="modal" data-target="#exampleModal">
+ Terminez
+</button>
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js"></script>
+    
+			<main>
+
+<div id="editeur">
+			{{form_start(formulaire)}}
+	
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enregistrez avec l'un de ces
+extensions
+ :</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+      {{form_row(formulaire.nom_document)}}
+      {{ form_widget(formulaire.DOCX, {'attr': {'class': 'Button'}}) }}
+      {{ form_widget(formulaire.PDF, {'attr': {'class': 'Button'}}) }}
+      {{ form_widget(formulaire.JPG, {'attr': {'class': 'Button'}}) }}
+      </div>
+    </div>
+  </div>
+</div>
+		<div class="centered">
+		<div class="document-editor" >
+			<div class="toolbar-container"></div>
+			<div class="content-container">
+			
+				<div id="editor">
+					{{text|raw}}
+				</div>
+						{{form_end(formulaire)}}
+
+			</div>
+		</div>
+
+	</div>
+		</main>
+
+</div>    </section>
+
+
+		{# templates/new_post.html.twig #}
+		{# Javascript Block #}
+	<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+		</div>
+</div>
+
+<script src="/js/ckeditor.js"></script>
+<script src="/texteditor/ckeditor.js"></script>
+{#<script>
+    function exportHTML(){
+       var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+            "xmlns='http://www.w3.org/TR/REC-html40'>"+
+            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+       var footer = "</body></html>";
+       var sourceHTML = header+document.getElementById("editor").innerHTML+footer;
+       
+       var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(editor);
+       var fileDownload = document.createElement("a");
+       document.body.appendChild(fileDownload);
+       fileDownload.href = source;
+       fileDownload.download = 'document.doc';
+       fileDownload.click();
+       document.body.removeChild(fileDownload);
+    }
+</script>
+#}
+
+
+{% endblock %}
